@@ -1,0 +1,44 @@
+
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - /home/bob/data/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host #8123
+  
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto:latest
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - ${PWD}/mosquitto/config:/mosquitto/config
+      - /home/bob/data/mosquitto:/mosquitto/data
+      - /home/bob/data/mosquitto-log:/mosquitto/log
+    network_mode: host  # 1883
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - ${PWD}/zigbee2mqtt/configuration.yaml:/app/data/configuration.yaml
+      - /home/bob/data/zigbee2mqtt:/app/data
+      - /run/udev:/run/udev:ro
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    network_mode: host  # 8099
+
+
+
+
+
+
