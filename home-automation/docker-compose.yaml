@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host #8123
-  
+ 
   mosquitto:
     container_name: mqtt
     image: eclipse-mosquitto:latest
@@ -31,10 +31,9 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - /home/bob/data/zigbee2mqtt:/app/data
-      - ./zigbee2mqtt/configuration.yaml:/app/data/configuration.yaml
       - /run/udev:/run/udev:ro
     devices:
-      - /dev/serial/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_7cf771ab7f12ef11ad2975b8bf9df066-if00-port0:/dev/ttyUSB0
+      - /dev/ttyUSB0:/dev/ttyUSB0
     network_mode: host  # 8099
 
 
