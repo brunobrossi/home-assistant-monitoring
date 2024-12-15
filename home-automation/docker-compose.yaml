@@ -18,7 +18,7 @@ services:
     environment:
       - TZ=Europe/Berlin
     volumes:
-      - ${PWD}/mosquitto/config:/mosquitto/config
+      - $(pwd)/mosquitto/config:/mosquitto/config
       - /home/bob/data/mosquitto:/mosquitto/data
       - /home/bob/data/mosquitto-log:/mosquitto/log
     network_mode: host  # 1883
@@ -30,7 +30,7 @@ services:
     environment:
       - TZ=Europe/Berlin
     volumes:
-      - ${PWD}/zigbee2mqtt/configuration.yaml:/app/data/configuration.yaml
+      - $(pwd)/zigbee2mqtt/configuration.yaml:/app/data/configuration.yaml:ro
       - /home/bob/data/zigbee2mqtt:/app/data
       - /run/udev:/run/udev:ro
     devices:
