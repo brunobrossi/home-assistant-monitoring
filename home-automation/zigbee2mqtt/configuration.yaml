@@ -4,7 +4,7 @@ mqtt:
   server: mqtt://localhost:1883
 serial:
   port: /dev/ttyUSB0
-  adapter: ember
+  adapter: ember #necessary for sonoff dongle-E
 frontend:
   port: 8080
   legacy_api: false
