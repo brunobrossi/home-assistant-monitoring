@@ -7,8 +7,13 @@ serial:
   adapter: ember #necessary for sonoff dongle-E
 frontend:
   port: 8080
-  legacy_api: false
-  legacy_availability_payload: false
   log_level: error
 homeassistant: true
 # Example to use
+advanced:
+  homeassistant_legacy_entity_attributes: false
+  homeassistant_legacy_triggers: false
+  legacy_api: false
+  legacy_availability_payload: false
+device_options:
+  legacy: false
