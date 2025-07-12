@@ -36,6 +36,14 @@ services:
       - /dev/ttyUSB0:/dev/ttyUSB0
     network_mode: host  # 8099
 
+  tunnel:
+    container_name: cloudflared
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARED_TOKEN}
+
   # python-matter-server
   matter-server:
     image: ghcr.io/home-assistant-libs/python-matter-server:stable
